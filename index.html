@@ -1,16 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dot Product</title>
 
   <!-- Materialize CSS CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <title>Materialize</title>
+  <!-- Custom styles -->
+  <style>
+    body {
+      color: #fff;
+    }
+
+    /* Dark theme */
+    body.dark {
+      background-color: #333;
+    }
+
+    /* Light theme */
+    body.light {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Blue color for buttons and navigation bar */
+    .nav-wrapper {
+      background-color: #2196f3;
+    }
+
+    .btn {
+      background-color: #2196f3;
+    }
+
+    .btn:hover {
+      background-color: #2195f37e;
+    }
+
+    /* CSS to change the thickness of Materialize slider line */
+    .slider .slider-track {
+      height: 50px; /* Adjust the desired thickness here */
+    }
+
+    /* Div to limit the width of the sliders */
+    .range-container {
+      width: 200px;
+    }
+
+    .range-container input[type="range"]::-webkit-slider-thumb {
+      background-color: #2196f3; /* Blue color for the button */
+    }
+    
+    /* CSS to color Materialize switch button red */
+    .switch label input[type="checkbox"]:checked+.lever {
+      background-color: #a1d0f7;
+    }
+
+    .switch label input[type="checkbox"]:checked+.lever:before,
+    .switch label input[type="checkbox"]:checked+.lever:after {
+      background-color: #2196f3 !important;
+    }
+
+    table {
+      line-height: 0.6; /* Adjust the height of the rows */
+      max-width: 500px;
+    }
+
+    table th,
+    table td {
+      width: 100px; /* Adjust the maximum width as per your needs */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .custom-canvas {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adjust the shadow properties as needed */
+    }
+ 
+  </style>
 </head>
-  <body class="dark">
+
+<body class="dark">
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">SIMPLE ELEMENTS</a>
@@ -21,5 +94,98 @@
       </ul>
     </div>
   </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h3>Dot Product</h3>
+        <canvas id="myCanvas" class="custom-canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <h5>Node Data</h5>
+        <table class="highlight" id="nodeTable">
+          <thead>
+            <tr>
+              <th>Node</th>
+              <th>x</th>
+              <th>y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Node data added here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col s6">
+        <h5>Line Data</h5>
+        <table class="highlight" id="lineTable">
+          <thead>
+            <tr>
+              <th>Line</th>
+              <th>Length</th>
+              <th>Angle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Node data added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <h5>Buttons and Slider</h5>
+        <button class="btn waves-effect waves-light" type="button" name="button" id="themeButton">Toggle Theme</button>
+        <p></p>
+        <div class="switch">
+          <label>
+            Light
+            <input type="checkbox" id="themeSlider" class="custom-switch">
+            <span class="lever"></span>
+            Dark
+          </label>
+        </div>
+        <div class="range-container">
+          <h5>Range Slider</h5>
+            <p>
+              <label for="slider">Choose a value:</label>
+              <input type="range" id="slider" min="0" max="100" />
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Custom script for theme toggle -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeButton = document.getElementById('themeButton')
+    const themeSlider = document.getElementById('themeSlider')
+
+    // Toggle theme when button is clicked
+    themeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark')
+      document.body.classList.toggle('light')
+    })
+
+    // Toggle theme when slider is changed
+    themeSlider.addEventListener('change', () => {
+      if (themeSlider.checked) {
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
+      } else {
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+      }
+    })
+  })
+</script>
+<script type="module" src="app.js"></script>
+
 </body>
 </html>
